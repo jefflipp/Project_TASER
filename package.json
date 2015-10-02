@@ -1,0 +1,27 @@
+{
+  "name": "project_3",
+  "version": "1.0.0",
+  "description": "##Project - Build TASER (Three Amigos Search Exploration Resourse)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jefflipp/Project_TASER.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jefflipp/Project_TASER/issues"
+  },
+  "homepage": "https://github.com/jefflipp/Project_TASER#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "mongoose": "^4.1.9",
+    "morgan": "^1.6.1"
+  }
+}
