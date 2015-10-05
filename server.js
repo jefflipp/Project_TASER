@@ -6,6 +6,8 @@ var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
 var apiRouter = express.Router() // get an instance of the router
 var userRoutes = require('./app/routes/userRoutes')
+var path = require('path')
+var ejsLayouts = require("express-ejs-layouts");
 
 mongoose.connect('localhost:27017/project_3')
 
@@ -15,13 +17,26 @@ app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use('/api', apiRouter) // tell the app to use the apiRouter if it receives a request with /api at the start
 
+// executes ejs engine
+app.use(ejsLayouts);
+app.use(express.static(__dirname + '/public'));
+app.set('views', path.join(__dirname, 'views'));
+app.engine('ejs', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+
 // write a simple get '/' route for the api
 apiRouter.get('/', function(req, res){
-    res.send({message: "welcome to the api"})
+    res.render('{message: "welcome to the api"}')
 })
 
 app.get('/', function(req, res){
-    res.send('welcome to the home page')
+    res.render('layout')
+})
+
+
+
+app.get('/index', function(req, res){
+    res.render('index')
 })
 
 // tell app to use apiRouter when we go to 

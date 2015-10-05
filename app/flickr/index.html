@@ -1,0 +1,66 @@
+<!-- <html>
+  <head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Comperio Super Simple Image Search</title>
+  </head>
+  <body>
+    Search for <b>cats, dogs, cakes</b>, or anything else that takes your fancy :-)
+    <br />
+    <input id="searchterm" />
+    <button id="search">search</button>
+    <div id="results"></div>
+    <script>
+      $("#search").click(function(){
+        $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+        {
+          tags: $("#searchterm").val(),
+          tagmode: "any",
+          format: "json"
+        },
+        function(data) {
+          $.each(data.items, function(i,item){
+            $("<img/>").attr("src", item.media.m).prependTo("#results");
+            if ( i == 10 ) return false;
+          });
+        });
+      });
+    </script>
+  </body>
+</html> -->
+
+
+<div class="gallery">  </div>
+
+<div class="js-gallery gallery"></div>
+
+<header class="island">
+   <h1>Flickr gallery</h1>
+   <form class="js-form-search form-search" action="/search" method="get" role="search">
+      <label for="query">Search:</label>
+      <input type="search" name="query" id="query" placeholder="Search" required />
+      <input type="submit" value="Search" />
+   </form>
+</header>
+
+<div class="island">
+   <div class="js-gallery gallery">
+      <img src="" class="js-gallery__image" />
+      <button class="js-gallery__arrow--left gallery__arrow gallery__arrow--left">
+         <span class="visually-hidden">Previous photo</span>
+      </button>
+      <button class="js-gallery__arrow--right gallery__arrow gallery__arrow--right">
+         <span class="visually-hidden">Next photo</span>
+      </button>
+   </div>
+</div>
+
+<div class="island thumbnails">
+   <ul class="js-thumbnails__list thumbnails__list"></ul>
+   <ol class="js-thumbnails__pager thumbnails__pager"></ol>
+</div>
+
+<script src="js/utility.js"></script>
+<script src="js/gallery.js"></script>
+<script src="js/flickr.js"></script>
+<script src="js/main.js"></script>
