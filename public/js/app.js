@@ -29,7 +29,7 @@ console.log("got here 1")
 			$("#results").html("");
 			$.each(results.items, function(index, item) {
 				$.get("tpl/item.html", function(data) {
-					$("#results").append(tplawesome(data, [{"title":item.snippet.title, "videId":item.id.videoId}]));
+					$("#results").append(tplawesome(data, [{"title":item.snippet.title, "videoId":item.id.videoId}]));
 				});
 			});
 			resetVideoHeight();

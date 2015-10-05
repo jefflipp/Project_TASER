@@ -30,12 +30,6 @@ apiRouter.get('/', function(req, res){
 })
 
 app.get('/', function(req, res){
-    res.render('layout')
-})
-
-
-
-app.get('/index', function(req, res){
     res.render('index')
 })
 
