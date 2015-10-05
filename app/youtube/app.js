@@ -8,12 +8,13 @@ function tplawesome(template, data) {
 		})
 	}
 	return res;
-} // and that's it!
+}
 console.log("tplawesome loaded")
 
 $(function() {
 	$("form").on("submit", function(e) {
 		e.prevent.default();
+console.log("got here 1")		
 
 		var request = gapi.client.youtube.search.list({
 			part: "snippet",
@@ -37,7 +38,7 @@ $(function() {
 
 });
 
-function reserVideoHeight() {
+function resetVideoHeight() {
 	$(".video").css("height", $("#results").width() * 9/16);
 }
 
