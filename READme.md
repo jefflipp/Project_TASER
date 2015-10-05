@@ -33,7 +33,7 @@ Connect to the following APIs in order to create this rich search experience for
 
 ###Wireframes  
 
-[need to create]
+![image](readme_picture.jpg)
 
 ###Initial Division of Labor  
 
