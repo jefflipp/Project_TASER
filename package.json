@@ -24,10 +24,12 @@
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "express-ejs-layouts": "^1.1.0",
+    "express-session": "^1.11.3",
     "jsonwebtoken": "^5.4.0",
     "mongoose": "^4.1.9",
     "morgan": "^1.6.1",
     "oauth": "^0.9.14",
+    "passport": "^0.3.0",
     "qs": "^5.1.0",
     "twitter-js-client": "0.0.5",
     "twitter-node-client": "0.0.6"
