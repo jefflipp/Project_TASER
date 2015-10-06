@@ -1,8 +1,4 @@
-window.Flickr = Utility.extend(window.Flickr || {}, {
-   /* methods of this module defined here */
-});
-
-(function(document, window) {
+function(document, window) {
    'use strict';
 
    var apiKey = '4b3af14fb1f951418f08fec6ccda3b4f';
@@ -42,6 +38,6 @@ window.Flickr = Utility.extend(window.Flickr || {}, {
       buildPhotoLargeUrl: buildPhotoLargeUrl,
       searchText: searchText
    });
-})(document, window);
+}(document, window);
 
 
