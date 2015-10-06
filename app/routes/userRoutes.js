@@ -1,62 +1,39 @@
 var express = require('express')
-var apiRouter = express.Router()
+var router = express.Router()
 var usersController = require('../controllers/usersControllers')
 var User = require('../models/User')
 var jwt = require('jsonwebtoken')
 var passport = require( "passport" )
 var mySpecialSecret = "threeamigos"
 
-module.exports = function( app, passport ) {
+module.exports = function( passport ) {
 
+// INDEX
+router.route( "/" )
+	.get( usersController.indexPage )
 
+// LOGIN
+router.route( "/login" )
+	.get( usersController.loginPage )
+	.post( usersController.login )
 
-// apiRouter.route( "/index" )
-// 	.get( usersController.index )
-
-// LAYOUT PAGE
-	app.get( '/', function( req, res ) {
-		res.render( "index" ); //loads the index.ejs file
-	});
-
-//	PROFILE
-	app.get( '/profile', isLoggedIn, function( req, res ) {
-		res.render( 'profile', {
-			user : req.user // will get the user out of the session
-		})
-	})
+// PROFILE
+router.route( "/profile")
+	.get( usersController.profilePage )
 
 //	LOGOUT
-
-	app.get( '/logout', function( req, res ) {
-		req.logout();
-		res.redirect( '/' );
-	})
-
-// 	AUTHENTICATE FIRST LOGIN
-
-//	LOGIN
-	app.get( '/login', function( req, res ) {
-		res.render( 'login' );
-	});
-
-	app.post( '/login', passport.authenticate( 'local-login', {
-		successRedirect : '/profile',
-		failureRedirect : '/login'
-	}) );
+router.route( "/logout" )
+	.get( usersController.logout )
 
 //	SIGN UP
-	app.get( '/signup', function( req, res ) {
-		res.render( 'signup' );
-	});
+router.route( "/signup" )
+	.get( usersController.signupPage )
+	.post( usersController.signup )
 
-//	process the signup form
-	app.post( '/signup', passport.authenticate( 'local-signup', {
-		successRedirect: '/profile',
-		failureRedirect: '/signup'
-		}) );
+	return router
 
 }
-
+/*
 // set up index/get for api router
 apiRouter.route('/users')
 	.get(usersController.index)
@@ -131,4 +108,4 @@ apiRouter.use(function(req,res,next){
 	// this is the destroy function
 	.delete(usersController.destroy)
 
-module.exports = apiRouter
+module.exports = apiRouter*/

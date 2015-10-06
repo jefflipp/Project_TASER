@@ -1,3 +1,4 @@
+
 var User = require("../models/User.js");
 
 function index(req, res){
@@ -81,8 +82,38 @@ module.exports = {
 	create: create,
 	show: show,
 	update: update,
-	destroy: destroy
-	
+	destroy: destroy,
+	indexPage: function ( req, res) {
+		res.render( 'index' )
+	},
+	loginPage: function ( req, res) {
+		res.render( 'login' )
+	},
+	profilePage: function ( req, res ) {
+		res.render( 'profile', {
+			user : req.user // will get the user out of the session
+		})
+	},
+	//Unsure about this one
+	login: function ( req, res ) {
+		passport.authenticate( 'local-login', {
+			successRedirect : '/profile',
+			failureRedirect : '/login'
+		}) 
+	},
+	logout: function ( req, res ) {
+		req.logout();
+		res.redirect( '/' );
+	},
+	signupPage: function ( req, res ){
+		res.render( 'signup' );
+	},
+	signup: function ( req, res ){
+		passport.authenticate( 'local-signup', {
+			successRedirect: '/profile',
+			failureRedirect: '/signup'
+		}) 
+	}
 }
 
 
