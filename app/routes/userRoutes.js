@@ -3,7 +3,59 @@ var apiRouter = express.Router()
 var usersController = require('../controllers/usersControllers')
 var User = require('../models/User')
 var jwt = require('jsonwebtoken')
+var passport = require( "passport" )
 var mySpecialSecret = "threeamigos"
+
+module.exports = function( app, passport ) {
+
+
+
+// apiRouter.route( "/index" )
+// 	.get( usersController.index )
+
+// LAYOUT PAGE
+	app.get( '/', function( req, res ) {
+		res.render( "index" ); //loads the index.ejs file
+	});
+
+//	PROFILE
+	app.get( '/profile', isLoggedIn, function( req, res ) {
+		res.render( 'profile', {
+			user : req.user // will get the user out of the session
+		})
+	})
+
+//	LOGOUT
+
+	app.get( '/logout', function( req, res ) {
+		req.logout();
+		res.redirect( '/' );
+	})
+
+// 	AUTHENTICATE FIRST LOGIN
+
+//	LOGIN
+	app.get( '/login', function( req, res ) {
+		res.render( 'login' );
+	});
+
+	app.post( '/login', passport.authenticate( 'local-login', {
+		successRedirect : '/profile',
+		failureRedirect : '/login'
+	}) );
+
+//	SIGN UP
+	app.get( '/signup', function( req, res ) {
+		res.render( 'signup' );
+	});
+
+//	process the signup form
+	app.post( '/signup', passport.authenticate( 'local-signup', {
+		successRedirect: '/profile',
+		failureRedirect: '/signup'
+		}) );
+
+}
 
 // set up index/get for api router
 apiRouter.route('/users')
@@ -48,7 +100,7 @@ apiRouter.route('/authenticate')
 
 apiRouter.use(function(req, res, next){
 	// check mulitple places for the JWT!
-	var token = req.body.token || req.param('token') || req.headers['x-access-token']
+	var token = req.body.token || req.params.token || req.headers['x-access-token']
 
 	// if token is found, use mySpecialSecret to decode.
 	if(token){

@@ -50,6 +50,22 @@ Connect to the following APIs in order to create this rich search experience for
 - Layout and style your front-end with clean & well-formatted CSS
 - Deploy your application online so it's publically accessible
 
+##Tuesday 
+
+1. Assess where we are 
+2. What's working, what's not
+3. who is going to do what today
+  
+
+End of Tuesday Goals:  MVP working:  
+  
+- Youtube working 
+- Flickr
+- Twitter
+- Build Comments model into core
+- Make User create and login view pages
+
+
 
 
 
