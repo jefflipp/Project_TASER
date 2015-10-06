@@ -33,6 +33,10 @@ app.get('/', function(req, res){
     res.render('index')
 })
 
+app.get('/flickr', function(req, res){
+    res.render('flickr')
+})
+
 // tell app to use apiRouter when we go to 
 // localhost:3000/api
 app.use('/api', apiRouter)
