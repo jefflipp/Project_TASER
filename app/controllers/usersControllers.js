@@ -1,5 +1,6 @@
 
 var User = require("../models/User.js");
+var passport = require('../config/passport.js')
 
 function index(req, res){
 	User.find(function(err,users){
