@@ -28,7 +28,7 @@ console.log("got here 1")
 			var results = response.result;
 			$("#results").html("");
 			$.each(results.items, function(index, item) {
-				$.get("tpl/item.html", function(data) {
+				$.get("item.html", function(data) {
 					$("#results").append(tplawesome(data, [{"title":item.snippet.title, "videoId":item.id.videoId}]));
 				});
 			});
