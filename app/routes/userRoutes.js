@@ -9,26 +9,32 @@ var mySpecialSecret = "threeamigos"
 module.exports = function( passport ) {
 
 // INDEX
-router.route( "/" )
-	.get( usersController.indexPage )
+// router.route( "/" )
+// 	.get( usersController.index )
 
-// LOGIN
-router.route( "/login" )
-	.get( usersController.loginPage )
-	.post( usersController.login )
+// // LOGIN
+// router.route( "/login" )
+// 	// .get( usersController.loginPage )
+// 	.post( usersController.login )
 
-// PROFILE
-router.route( "/profile")
-	.get( usersController.profilePage )
+// // PROFILE
+// router.route( "/profile")
+// 	.get( usersController.profilePage )
 
-//	LOGOUT
-router.route( "/logout" )
-	.get( usersController.logout )
+// //	LOGOUT
+// router.route( "/logout" )
+// 	// .get( passport.authenticate( 'local-login', {
+// 	// 		successRedirect : '/profile',
+// 	// 		failureRedirect : '/login'
+// 	// 	}), usersController.logout )
 
 //	SIGN UP
 router.route( "/signup" )
-	.get( usersController.signupPage )
-	.post( usersController.signup )
+	// .get( usersController.signupPage )
+	.post( passport.authenticate( 'local-signup', {
+			successRedirect : 'https://www.google.com',
+			failureRedirect : '/login'
+		}), usersController.create )
 
 	return router
 

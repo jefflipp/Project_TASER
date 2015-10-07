@@ -1,6 +1,7 @@
 
 var User = require("../models/User.js");
-var passport = require('../config/passport.js')
+var passport = require('passport')
+
 
 function index(req, res){
 	User.find(function(err,users){
@@ -83,38 +84,33 @@ module.exports = {
 	create: create,
 	show: show,
 	update: update,
-	destroy: destroy,
-	indexPage: function ( req, res) {
-		res.render( 'index' )
-	},
-	loginPage: function ( req, res) {
-		res.render( 'login' )
-	},
-	profilePage: function ( req, res ) {
-		res.render( 'profile', {
-			user : req.user // will get the user out of the session
-		})
-	},
-	//Unsure about this one
-	login: function ( req, res ) {
-		passport.authenticate( 'local-login', {
-			successRedirect : '/profile',
-			failureRedirect : '/login'
-		}) 
-	},
-	logout: function ( req, res ) {
-		req.logout();
-		res.redirect( '/' );
-	},
-	signupPage: function ( req, res ){
-		res.render( 'signup' );
-	},
-	signup: function ( req, res ){
-		passport.authenticate( 'local-signup', {
-			successRedirect: '/profile',
-			failureRedirect: '/signup'
-		}) 
-	}
+	destroy: destroy
+
+	// indexPage: function ( req, res) {
+	// 	res.render( 'index' )
+	// },
+	// loginPage: function ( req, res) {
+	// 	res.render( 'login' )
+	// },
+	// profilePage: function ( req, res ) {
+	// 	res.render( 'profile', {
+	// 		user : req.user // will get the user out of the session
+	// 	})
+	// },
+	// //Unsure about this one
+	// login: function ( req, res ) {
+	// 	res.redirect( "https://www.google.com" )
+	// },
+	// logout: function ( req, res ) {
+	// 	req.logout();
+	// 	res.redirect( '/' );
+	// },
+	// signupPage: function ( req, res ){
+	// 	res.render( 'signup' );
+	// },
+	// signup: function ( req, res  ){
+
+	// }
 }
 
 

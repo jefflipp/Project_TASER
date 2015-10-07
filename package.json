@@ -30,6 +30,7 @@
     "morgan": "^1.6.1",
     "oauth": "^0.9.14",
     "passport": "^0.3.0",
+    "passport-local": "^1.0.0",
     "qs": "^5.1.0",
     "twitter-js-client": "0.0.5",
     "twitter-node-client": "0.0.6"
