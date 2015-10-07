@@ -26,7 +26,7 @@ $(function() {
 				// var test= items[0]['id'].videoId
 				var test = results['items'][0].id.videoId
 				console.log(test)
-				$('#results').append('<iframe class="video w100" width=640 height=360 src="https://www.youtube.com/embed/'+test+ '?autoplay=1" frameborder="0" ></iframe>')
+				$('#results').append('<div class="col-md-5"><iframe class="video w100" width=540 height=360 src="https://www.youtube.com/embed/'+test+ '?autoplay=1" frameborder="0" ></iframe></div>')
 
 			});
 
