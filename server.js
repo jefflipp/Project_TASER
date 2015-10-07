@@ -3,13 +3,15 @@ var app = express();
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
-var port = process.env.PORT || 3000;
-var apiRoutes = express.Router() // get an instance of the router
-var userRoutes = require('./app/routes/userRoutes')
+var passport = require('passport');
 var path = require('path')
 var session = require('express-session');
 var ejsLayouts = require("express-ejs-layouts");
-var passport = require('passport');
+var routes = require('./app/routes/userRoutes');
+var flash = require( "connect-flash" );
+
+
+
 
 mongoose.connect('localhost:27017/project_3')
 
@@ -35,18 +37,18 @@ app.use(session({
     saveUninitialized: true
 }));
 
+
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login session
 app.use(function (req, res, next){
-    console.log(req.user)
     global.user = req.user;
     next()
 });
+app.use( flash() ); 
 
-// write a simple get '/' route for the api
-/*apiRouter.get('/', function(req, res){
-    res.render('{message: "welcome to the api"}')
-})*/
+app.get('/', function(req, res){
+    res.render('index')
+})
 
 app.get('/flickr', function(req, res){
     res.render('flickr')
@@ -54,9 +56,8 @@ app.get('/flickr', function(req, res){
 
 // tell app to use apiRoutes when we go to 
 // localhost:3000/api
-app.use('/api', apiRoutes )
-
-app.use( '/', userRoutes( passport ) )
+require("./app/config/passport")(passport)
+app.use( routes );
 
 //RUN THE SERVER
 
